@@ -1,0 +1,16 @@
+{
+  "name": "lulu-php-sdk",
+  "version": "1.0.0",
+  "description": "Lulu php sdk",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "docker build . -t lulu-php-sdk:develop",
+    "restart": "npm run stop && sleep 20 && npm run start",
+    "stop": "docker stack rm lulu-php-sdk",
+    "start": "docker stack deploy --with-registry-auth -c docker-compose.yml lulu-php-sdk",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

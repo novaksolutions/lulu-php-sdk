@@ -1,0 +1,13 @@
+version: '3'
+services:
+  www:
+    image: "lulu-php-sdk:develop"
+    ports:
+     - "85:80"
+    volumes:
+     - ./:/var/www/html/public/ac.nlocal.info:cached
+     - ../rest-sdk-base:/var/www/html/public/ac.nlocal.info/vendor/novaksolutions/rest-sdk-base:cached
+    environment:
+      CLIENT_KEY: "client_id"
+      CLIENT_SECRET: "client_secret"
+      ACCESS_TOKEN: "test"
