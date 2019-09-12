@@ -2,8 +2,9 @@
 namespace NovakSolutions\LuluPhpSdk\Model;
 
 use NovakSolutions\RestSdkBase\Model\Model;
+use PHPUnit\Framework\TestCase;
 
-class PrintJob extends Model
+class PrintJobTest extends TestCase
 {
 
 }
