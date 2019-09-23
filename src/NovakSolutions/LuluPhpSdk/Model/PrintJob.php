@@ -8,7 +8,6 @@ use NovakSolutions\RestSdkBase\Model\Traits\SavableTrait;
 
 class PrintJob extends Model implements \JsonSerializable
 {
-    use IgnoreIgnoreOnJsonSerialize;
     /** @var string  */
     public $contact_email = null;
 
@@ -19,6 +18,11 @@ class PrintJob extends Model implements \JsonSerializable
 
     /** @var PoPo\Address  */
     public $shipping_address = null;
+
+    /** @var null|int
+     * @ignoreOnJsonSerialize
+     */
+    public $id = null;
 
     /** @var string */
     public $shipping_level;
