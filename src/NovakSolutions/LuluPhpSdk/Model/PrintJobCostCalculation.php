@@ -5,6 +5,7 @@ namespace NovakSolutions\LuluPhpSdk\Model;
 
 use NovakSolutions\LuluPhpSdk\Model\PoPo\PrintJobCostCalculationLineItem;
 use NovakSolutions\LuluPhpSdk\Service\PrintJobCostCalculations;
+use NovakSolutions\RestSdkBase\Exception\BadRequestException;
 use NovakSolutions\RestSdkBase\Model\Model;
 use NovakSolutions\RestSdkBase\Model\Traits\SavableTrait;
 
@@ -63,8 +64,18 @@ class PrintJobCostCalculation extends Model
 
         foreach($shippingLevelsToPrice as $shippingLevelPrice){
             $this->shipping_level = $shippingLevelPrice;
-            $this->save();
-            $pricesByShippingLevel[$this->shipping_level] = $this->total_cost_incl_tax;
+            try{
+                $this->save();
+                $pricesByShippingLevel[$this->shipping_level] = $this->total_cost_incl_tax;
+            } catch (BadRequestException $e){
+                //Lulu will return a 400 Bad Request if "No shipping option found for ___ to __ with pod_packages ____
+                //So we trap it here and convert it to null...
+                if(strpos($e->getMessage(), "No shipping option found for") !== false){
+                    $pricesByShippingLevel[$this->shipping_level] = null;
+                } else {
+                    throw $e;
+                }
+            }
         }
 
         $this->shipping_level = $originalShippingLevel;

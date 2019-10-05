@@ -23,7 +23,8 @@ $printJob = createPrintJob();
 //Test Print Job Cost Calcuation
 $printJobCostCalculation = new \NovakSolutions\LuluPhpSdk\Model\PrintJobCostCalculation();
 $printJobCostCalculation->fromPrintJob($printJob);
-$results = $printJobCostCalculation->getShippingLevelPrices(array('MAIL'));
+//Ground used to throw an exception...
+$results = $printJobCostCalculation->getShippingLevelPrices(array('MAIL', 'GROUND'));
 var_dump($results);
 
 //Test PrintJob Creation
