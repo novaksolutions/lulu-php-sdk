@@ -70,7 +70,11 @@ class PrintJobCostCalculation extends Model
             } catch (BadRequestException $e){
                 //Lulu will return a 400 Bad Request if "No shipping option found for ___ to __ with pod_packages ____
                 //So we trap it here and convert it to null...
-                if(strpos($e->getMessage(), "No shipping option found for") !== false){
+                if(
+                    strpos($e->getMessage(), "No shipping option found for") !== false ||
+
+                    //If the shipper doesn't support this country it may return an invalid postal code error...
+                    strpos($e->getMessage(), "The format of the Postal Code entered does not match the country you entered. It should look like ['4750', '2998']") !== false){
                     $pricesByShippingLevel[$this->shipping_level] = null;
                 } else {
                     throw $e;
