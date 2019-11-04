@@ -1,10 +1,10 @@
 {
   "name": "novaksolutions/lulu-php-sdk",
   "description": "Simple SDK for lulu",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "require": {
     "php": ">=7.1",
-    "novaksolutions/rest-sdk-base": "^0.3"
+    "novaksolutions/rest-sdk-base": "^0.3.1"
   },
   "autoload": {
     "psr-4": {
