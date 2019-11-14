@@ -25,6 +25,12 @@ class LineItem implements \JsonSerializable
      */
     public $pageCount = null;
 
+    /** @ignoreOnJsonSerialize */
+
+    /** @var LineItemStatus|null */
+    public $status = null;
+
+
     public function __construct($external_id = null, $quantity = null, $title = null, $printable_cover_pdf_url = null, $printable_interior_pdf_cover_url = null, $printable_pod_package_id = null, $pageCount = 0){
         if($external_id != null){
             $this->external_id = $external_id;
