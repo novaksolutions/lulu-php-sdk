@@ -10,4 +10,3 @@ services:
     environment:
       CLIENT_KEY: "client_id"
       CLIENT_SECRET: "client_secret"
-      ACCESS_TOKEN: "test"
