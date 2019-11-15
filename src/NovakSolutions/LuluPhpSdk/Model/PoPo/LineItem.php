@@ -25,9 +25,9 @@ class LineItem implements \JsonSerializable
      */
     public $pageCount = null;
 
-    /** @ignoreOnJsonSerialize */
-
-    /** @var LineItemStatus|null */
+    /** @var LineItemStatus|null
+     ** @ignoreOnJsonSerialize
+     */
     public $status = null;
 
 
